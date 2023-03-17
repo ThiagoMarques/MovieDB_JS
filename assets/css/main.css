@@ -1,12 +1,9 @@
-* {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    color: #fff;
-}
-
 html, body {
     display: flex;
     flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #fff;
     height: 100%;
     width: 100%;
     align-items: center;
@@ -37,6 +34,53 @@ header {
     height: 100%;
     width: 100%;
     max-width: 1400px;
+}
+
+/* Content -- Section */
+.section {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+    flex-wrap: wrap;
+    max-height: 50vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.section__movie {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 0.125rem;
+    margin: 0.5rem;
+    padding: 0.3rem;
+}
+.section__movie-image {
+    display: flex;
+}
+.section__movie-image img{
+    display: flex;
+    max-height: 15rem;
+}
+.section__movie-details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.section__movie-details li{
+    padding: 0.3rem 0 0.3rem 1rem;
+}
+.section__movie-details li:nth-child(3){
+    padding-top: 0;
+}
+.details__title, .details__original-title {
+    font-size: 0.8rem !important;
+}
+.details__original-language, .details__vote-average {
+    font-size: 0.625rem !important;
 }
 
 /* Footer */
