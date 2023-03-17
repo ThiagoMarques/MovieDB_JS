@@ -1,8 +1,3 @@
-const API_KEY = '898915155b5e55642efcc67317e973a0';
-const version = 3;
-let pathTopMovie = 'movie/popular';
-const language = 'pt-BR';
-const urlMain = `https://api.themoviedb.org/${version}/${pathTopMovie}?api_key=898915155b5e55642efcc67317e973a0&language=${language}`
 const urlImage = `https://image.tmdb.org/t/p/original`
 
 function convertTopMoviesToHTML(movie) {
@@ -23,17 +18,19 @@ function convertTopMoviesToHTML(movie) {
     </div>`
 }
 
-const topMoviesElem = document.getElementById('teste');
+const topMoviesElem = document.getElementById('top-movies');
 
-fetch(urlMain)
-    .then((response) => response.json() 
-    .then((jsonBody) => jsonBody.results)
-    .then((topMoviesList) => {
+movieApi.getApiMovie('/movie/top_rated').then((topMoviesList = []) => {
+    const topMovies = topMoviesList.map((topMovie) => convertTopMoviesToHTML(topMovie))
+    const topMoviesHTML = topMovies.join('')
+    topMoviesElem.innerHTML = topMoviesHTML
+})
 
-        for (let index = 0; index < topMoviesList.length; index++) {
-            const topMovie = topMoviesList[index];
-            console.log('topMovie', topMovie)
-            topMoviesElem.innerHTML += convertTopMoviesToHTML(topMovie)
-        }
-    })
-    .catch((error) => console.error(error)))
+const popularMoviesElem = document.getElementById('popular-movies');
+
+movieApi.getApiMovie('/movie/top_rated').then((popularMoviesList = []) => {
+    console.log('popularMoviesList', popularMoviesList)
+    const popularMovies = popularMoviesList.map((popularMovie) => convertTopMoviesToHTML(popularMovie))
+    const popularMoviesHTML = popularMovies.join('')
+    popularMoviesElem.innerHTML = popularMoviesHTML
+})
