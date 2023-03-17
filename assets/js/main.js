@@ -19,18 +19,19 @@ function convertTopMoviesToHTML(movie) {
 }
 
 const topMoviesElem = document.getElementById('top-movies');
-
-movieApi.getApiMovie('/movie/top_rated').then((topMoviesList = []) => {
-    const topMovies = topMoviesList.map((topMovie) => convertTopMoviesToHTML(topMovie))
-    const topMoviesHTML = topMovies.join('')
-    topMoviesElem.innerHTML = topMoviesHTML
-})
-
 const popularMoviesElem = document.getElementById('popular-movies');
 
-movieApi.getApiMovie('/movie/top_rated').then((popularMoviesList = []) => {
-    console.log('popularMoviesList', popularMoviesList)
-    const popularMovies = popularMoviesList.map((popularMovie) => convertTopMoviesToHTML(popularMovie))
-    const popularMoviesHTML = popularMovies.join('')
-    popularMoviesElem.innerHTML = popularMoviesHTML
-})
+const topMoviePath = '/movie/top_rated';
+const topPopularPath = '/movie/popular';
+
+function insertMovie(path, elem) {
+    movieApi.getApiMovie(path).then((movieList = []) => {
+        const listMovie = movieList.map((topMovie) => convertTopMoviesToHTML(topMovie))
+        const listMovieHTML = listMovie.join('')
+        elem.innerHTML = listMovieHTML
+    })
+}
+
+insertMovie(topMoviePath, topMoviesElem);
+insertMovie(topPopularPath, popularMoviesElem);
+
